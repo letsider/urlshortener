@@ -1,0 +1,27 @@
+<div>
+  <div>
+    <div class="submit-form">
+      <div class="form-group">
+        <label for="originalUrl">URL</label>
+        <input class="form-control" id="originalUrl" required [(ngModel)]="url.completeUrl"
+          (ngModelChange)="modelChangeFn()" name="originalUrl" />
+      </div>
+      <button (click)="shortenUrl()" class="btn btn-success">Raccourcir URL</button>
+
+      <div>
+        <div>
+          <h4>URL</h4>
+          <div>
+            <div>
+              <label><strong>URL complete:</strong></label>
+              {{ url.completeUrl }}
+            </div>
+            <div>
+              <label><strong>URL Raccourcie:</strong></label>
+              {{ url.hashedUrl }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

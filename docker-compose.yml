@@ -1,0 +1,66 @@
+version: "3.8"
+services:
+  mongo:
+    image: mongo:5.0.2
+    container_name: mongo
+    hostname: mongo
+    restart: unless-stopped
+    ports:
+      - 26000:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+      - MONGO_INITDB_DATABASE=urlshortener
+      - MONGO_DB_USERNAME=letsider
+      - MONGO_DB_PASSWORD=letsider
+    volumes:
+      - $MONGO_DATA_HOST_PATH:/data/db/
+      - $MONGO_LOG_HOST_PATH:/var/log/mongodb/
+      - $MONGO_INITDB_SCRIPTS_HOST_PATH:/docker-entrypoint-initdb.d/
+    networks:
+      - main-network
+    command: ["--bind_ip", "0.0.0.0"]
+    
+  app-backend:
+    build:
+      context: D:\dev\Project\urlshortener\urlshortener-backend
+      dockerfile: Dockerfile
+    image: urlshortener-backend
+    container_name: urlshortener-backend
+    restart: on-failure
+    depends_on:
+      - mongo
+    ports:
+      - 25000:8000
+    environment:
+      - SERVER_PORT=8000
+      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_APPLICATION_NAME=urlshortener
+      - SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE=urlshortener
+      - SPRING_DATA_MONGODB_AUTO_INDEX_CREATION=true
+      - SPRING_DATA_MONGODB_HOST=mongo
+      - SPRING_DATA_MONGODB_PORT=27017
+      - SPRING_DATA_MONGODB_USERNAME=letsider
+      - SPRING_DATA_MONGODB_PASSWORD=letsider
+      - SPRING_DATA_MONGODB_DATABASE=urlshortener
+    networks:
+      - main-network
+
+  app-client:
+    build:
+      context: D:\dev\Project\urlshortener\urlshortener-frontend
+      dockerfile: Dockerfile
+    image: urlshortener-frontend
+    container_name: urlshortener-frontend
+    ports:
+      - 8081:80
+    restart: always
+    depends_on:
+      - app-backend
+    networks:
+      - main-network
+
+networks:
+  main-network:
+    external:
+      name: urlshortener-network

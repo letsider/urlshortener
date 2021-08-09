@@ -23,7 +23,7 @@ services:
     
   app-backend:
     build:
-      context: D:\dev\Project\urlshortener\urlshortener-backend
+      context: ./urlshortener-backend
       dockerfile: Dockerfile
     image: urlshortener-backend
     container_name: urlshortener-backend
@@ -48,7 +48,7 @@ services:
 
   app-client:
     build:
-      context: D:\dev\Project\urlshortener\urlshortener-frontend
+      context: ./urlshortener-frontend
       dockerfile: Dockerfile
     image: urlshortener-frontend
     container_name: urlshortener-frontend

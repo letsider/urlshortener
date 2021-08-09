@@ -2,10 +2,15 @@
 
 Technologies utilisées:
 > Spring boot 2.5.3
+> 
 > Java JDK 16 (AdoptOpenJDK)
+> 
 > MongoDB 5.0.2
+> 
 > Angular 12.2.0
+> 
 > Docker 20.10.17
+> 
 > Docker compose 1.29.2
 
 

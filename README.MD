@@ -1,6 +1,6 @@
 # Challenge nouveau développeur Notarius - URL Shortener
 
-Techologies utilisées:
+Technologies utilisées:
 > Spring boot 2.5.3
 > Java JDK 16 (AdoptOpenJDK)
 > MongoDB 5.0.2
@@ -34,7 +34,7 @@ docker-compose --env-file "./DB/mongodb/.env" up -d
 Vous pouvez désormais accéder à l'application via le lien : http://localhost:8081/
 
 
-### Consommer l'API Rest sans docker (nécessite server Mongodb en local)
+### Consommer l'API Rest sans docker (nécessite serveur Mongodb en local)
 
 > Lancer l'application backend
 

@@ -48,15 +48,6 @@ public class UrlControllerTest {
 
     @Test
     @Order(1)
-    void shortenUrl_url_raccourcie() throws Exception {
-
-        mockMvc.perform(get("/url/" + shortenService).param(shortenServiceParam, validUrl)).andDo(print())
-                .andExpect(status().isOk());
-
-    }
-
-    @Test
-    @Order(2)
     void shortenUrl_url_existante() throws Exception {
 
         mockMvc.perform(get("/url/" + shortenService).param(shortenServiceParam, validUrl)).andDo(print())
@@ -65,7 +56,7 @@ public class UrlControllerTest {
     }
 
     @Test
-    @Order(3)
+    @Order(2)
     void shortenUrl_url_invalid() throws Exception {
 
         mockMvc.perform(get("/url/" + shortenService).param(shortenServiceParam, invalidUrl)).andDo(print())
@@ -74,7 +65,7 @@ public class UrlControllerTest {
     }
 
     @Test
-    @Order(4)
+    @Order(3)
     void shortenUrl_url_vide() throws Exception {
 
         mockMvc.perform(get("/url/" + shortenService).param(shortenServiceParam, "")).andDo(print())
@@ -83,7 +74,7 @@ public class UrlControllerTest {
     }
 
     @Test
-    @Order(5)
+    @Order(4)
     void hashed_url_existante() throws Exception {
 
         mockMvc.perform(get("/url/" + retrieveService).param(retrieveServiceParam, hashedUrl)).andDo(print())
@@ -91,7 +82,7 @@ public class UrlControllerTest {
     }
 
     @Test
-    @Order(6)
+    @Order(5)
     void hashedUrl_url_vide() throws Exception {
 
         mockMvc.perform(get("/url/" + retrieveService).param(retrieveServiceParam, "")).andDo(print())
@@ -100,7 +91,7 @@ public class UrlControllerTest {
     }
 
     @Test
-    @Order(7)
+    @Order(6)
     void hashedUrl_url_inexistante() throws Exception {
 
         mockMvc.perform(get("/url/" + retrieveService).param(retrieveServiceParam, badHashedUrl)).andDo(print())
